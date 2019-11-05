@@ -14,7 +14,7 @@
       exit();
   }
 
-  $search = mysqli->query("SELECT Users from  VALUES where user_id='$userID'");
+  $search = $mysqli->query("SELECT Users from  VALUES where user_id='$userID'");
 
   if(mysqli_num_rows($search)>0)
   {
