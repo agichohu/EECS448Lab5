@@ -22,19 +22,26 @@
       exit();
   }
   // $query= "SELECT user_id FROM Users";
-  // $search = $mysqli->query("SELECT Users from  VALUES where user_id='$userID'");
+  // $searchQ= "SELECT * FROM Users WHERE user_id = '$userID'";
+  // $search = $mysqli->query($searchQ);
+  $search = $mysqli->query("SELECT * from Users where user_id='$userID'");
 
-  // echo "Search result: " .$search . "<br>";
-
-  $myQuery = "INSERT INTO Users (user_id) VALUES('" .$userID. "');";
-  // if ($mysqli->query($myQuery) === TRUE) {
-  if($mysqli->query($myQuery)=== TRUE)
+  if(mysqli_num_rows($search)>0)
   {
-      echo "New record created successfully for user: ".$userID. "<br>";
-  } else {
-      echo "Error: " . $myQuery. "<br>" . $mysqli->error;
+    echo "User already exists<br>";
+    exit();
   }
-
+  else
+  {
+    $myQuery = "INSERT INTO Users (user_id) VALUES('" .$userID. "');";
+    if($mysqli->query($myQuery)=== TRUE)
+    {
+        echo "New record created successfully for user: ".$userID. "<br>";
+    } else {
+        echo "Error: " . $myQuery. "<br>" . $mysqli->error;
+    }
+  
+  }
 
   $mysqli->close();
 
