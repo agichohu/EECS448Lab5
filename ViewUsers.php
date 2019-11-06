@@ -12,7 +12,7 @@
 
     if($query)
     {
-        echo "here is the table: <table>";
+        echo "here is the table: <table border=2px>";
 
         while($row = $query->fetch_assoc())
         {
